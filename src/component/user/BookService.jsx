@@ -21,7 +21,7 @@ export const BookService = () => {
             if(res.status === 200){
                 console.log("Success")
                 console.log(res.data.data)
-                setServices(res.data.data)
+                 await setServices(res.data.data)
            }else{
             console.log("error")
            } 
@@ -39,7 +39,22 @@ export const BookService = () => {
           });
     }
   }
-  
+  const FilterData = async(e)=>{
+    try{
+        const res = await axios.get("http://localhost:4000/services/service/filter",{
+            params: {
+                serviceName:e.target.value,
+            },
+        });
+        console.log("Previous state:", services);
+         setServices(res.data.data);
+        console.log("Updated state:", services);
+
+    }catch(error){
+        setServices([]);
+    }
+}
+
   
   
   
@@ -76,8 +91,9 @@ export const BookService = () => {
     style={{ marginLeft: `5%`, maxWidth: `80%` }}
   >
     <h1 className="mb-4">Book a Service</h1>
+    <input type = "text" onChange={(e) =>{FilterData(e)}} placeholder='Search' />
     <div className="row">
-      {services.map((service) => (
+      {services?.map((service) => (
         <div key={service._id} className="col-md-4 mb-4">
           <div className="card">
             <img

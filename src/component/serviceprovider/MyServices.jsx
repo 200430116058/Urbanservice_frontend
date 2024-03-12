@@ -9,12 +9,12 @@ export const MyServices = () => {
     const [serviceProviders,setServiceProviders] = useState([])
 
     const id = localStorage.getItem("id")
-
+     console.log("Local id" , id)
     const fetchMyService = async (data)=>{
         try{
             if(id!=null || id!=undefined){
                 const res = await axios.get("http://localhost:4000/services/service/providerid/"+id)
-                console.log(res.data)
+                console.log( "data",res.data.data)
                 setServiceProviders(res.data.data)
             }
         }catch(error){

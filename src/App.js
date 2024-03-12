@@ -54,7 +54,7 @@ function App() {
             <Route path='/user/bookings' element={<MyBookings/>}/>
             <Route path='/user/bookservicedetials/:id' element={<BookServiceDetails/>}/>
             <Route path='/user/fetchdetails/:id' element={<FetchDetails/>}/>
-            <Route path='/user/payment' element={<Payement/>}/>
+            <Route path='/user/payment/:id' element={<Payement/>}/>
             <Route path='/*' element={<Error404/>}/>
             {/* </Route> */}
           </Routes>
