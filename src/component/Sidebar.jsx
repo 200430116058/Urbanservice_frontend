@@ -27,6 +27,11 @@ export const Sidebar = () => {
       link:"/serviceprovider/profile",
       icon:"person"
     },
+    {
+      name:"Graph",
+      link:"/service/graph",
+      icon:"person"
+    }
     // {
     //   name:"All services",
     //   link:"/serviceprovider/servicelist"
@@ -54,7 +59,8 @@ export const Sidebar = () => {
       name:"Profile",
       link:"/user/profile",
       icon:"person"
-    }
+    },
+    
   ]
 
 

@@ -18,6 +18,7 @@ export const MyServices = () => {
                 setServiceProviders(res.data.data)
             }
         }catch(error){
+          console.log(error)
             toast.error('😣 Internal Error!', {
                 position: "top-right",
                 autoClose: 5000,

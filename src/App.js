@@ -24,6 +24,7 @@ import { UserRegistration } from './component/user/UserRegistration';
 import { Profile, ServiceProviderProfile } from './component/serviceprovider/Profile';
 import { UserProfile } from './component/user/Profile';
 import { BookServiceDetails, DetailBookService } from './component/user/BookServiceDetails';
+import Graph from './component/serviceprovider/ServiceGraph';
 
 function App() {
   const path = window.location.pathname
@@ -55,6 +56,8 @@ function App() {
             <Route path='/user/bookservicedetials/:id' element={<BookServiceDetails/>}/>
             <Route path='/user/fetchdetails/:id' element={<FetchDetails/>}/>
             <Route path='/user/payment/:id' element={<Payement/>}/>
+            <Route path='/service/graph' element={<Graph/>}/>
+
             <Route path='/*' element={<Error404/>}/>
             {/* </Route> */}
           </Routes>
