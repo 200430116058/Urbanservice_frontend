@@ -2,9 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 
-export default function MyBookings() {
+export default function UserDetail() {
 
-    const id = localStorage.getItem("id");
+    const id = useParams().id
     const [detail , Setdetail] = useState([]);
 
     const UserData = async()=>{

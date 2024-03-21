@@ -1,0 +1,38 @@
+<!-- emailWithPDF.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email with PDF</title>
+</head>
+<body>
+    <div>
+        <h1>Contact Form Submission</h1>
+        <p>Name: <span id="serviceName"></span></p>
+        <p>Email: <span id="serviceProviderName"></span></p>
+        <p>Message: <span id="total"></span></p>
+    </div>
+
+    <script>
+        // Fetch dynamic data using JavaScript
+        async function fetchData() {
+            try {
+                const res = await axios.get("http://localhost:4000/bookings/booking/" + id);
+                const item = res.data.data;
+
+                // Fill in the placeholders with the fetched data
+                document.getElementById("serviceName").innerText = item.service.serviceName;
+                document.getElementById("serviceProviderName").innerText = item.serviceprovider.name;
+                document.getElementById("total").innerText = item.total;
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+        // Call the fetchData function to populate the HTML content
+        fetchData();
+    </script>
+</body>
+</html>

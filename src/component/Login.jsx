@@ -9,7 +9,7 @@ export const Login = () => {
 
     const {register,handleSubmit} = useForm()
     const [roles,setRoles] = useState()
-    
+   
 
     const submitHandler = async (data)=>{
         try{
@@ -18,7 +18,7 @@ export const Login = () => {
                 if(res.status === 200){
                         console.log("Login success")
                         console.log(res.data.data)
-                        localStorage.setItem("id",res.data.data._id)
+                        localStorage.setItem("user_id",res.data.data._id)
                         window.location.pathname = "/user/dashboard"
                 }else{
                     alert("Error")
@@ -174,22 +174,24 @@ export const Login = () => {
                 <div className="card-body">
                   <form role="form" className="text-start" onSubmit={handleSubmit(submitHandler)}>
                     <div className="input-group input-group-outline my-3">
-                      <label className="form-label">Email</label>
+                      
                       <input
                         type="email"
                         className="form-control"
                         onfocus="focused(this)"
                         onfocusout="defocused(this)"
+                        placeholder='Email'
                         {...register('email')}
                       />
                     </div>
                     <div className="input-group input-group-outline mb-3">
-                      <label className="form-label">Password</label>
+                     
                       <input
                         type="password"
                         className="form-control"
                         onfocus="focused(this)"
                         onfocusout="defocused(this)"
+                        placeholder='Password'
                         {...register("password")}
                       />
                     </div>

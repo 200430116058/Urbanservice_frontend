@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Payment.css'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
@@ -6,17 +6,59 @@ import axios from 'axios'
 export const Payement = () => {
   const id = useParams().id;
  console.log("Update id", id);
+ const [item , Setitem] = useState()
+
+
+ const GetData = async()=>{
+  const res = await axios.get("http://localhost:4000/bookings/booking/"+id);
+  console.log(res.data.data.service.serviceName);
+  Setitem(res.data.data);
+ }
  
-  const ChangeStatus = async()=>{
-    const res =  await axios.put("http://localhost:4000/bookings/booking/updatestatus/"+id,{status:"Done"});
-    console.log(res.data.data)
-    
-    if(res.status === 200){
-      alert("Data Updated");
-    }else{
-      alert("Some error")
+ useEffect(()=>{
+  GetData();
+},[]);
+
+const SendMail = async () => {
+  try {
+    // Fetch data before sending email
+    const res = await axios.get("http://localhost:4000/bookings/booking/" + id);
+    const item = res.data.data;
+
+    // Construct email content with dynamically fetched data
+    const htmlTemplate = `
+      <div>
+        <h1>Contact Form Submission</h1>
+        <p>Name: ${item.service.serviceName}</p>
+        <p>Email: ${item.serviceprovider.name}</p>
+        <p>Message: ${item.total}</p>
+      </div>
+    `;
+
+    // Prepare email object
+    const emailObject ={
+      to: "yoganandimihir@gmail.com",
+      subject: "Booking Confirmation",
+      html: htmlTemplate,
+    };
+
+    // Send email
+    const emailRes = await axios.post("http://localhost:4000/users/sendmail", emailObject);
+
+    // Check response and show appropriate message
+    if (emailRes.status === 200) {
+      alert("Mail Sent");
+    } else {
+      alert("Mail Not Sent");
     }
+  } catch (error) {
+    console.error('Error sending email:', error);
+    alert("Error occurred while sending email.");
   }
+}
+
+
+  
   return (
     <div className="container mt-5 px-5">
   <div className="mb-4">
@@ -87,7 +129,7 @@ export const Payement = () => {
       </div>
       <div className="mt-4 mb-4 d-flex justify-content-between">
         <span>Previous step</span>
-        <button className="btn btn-success px-3" onClick={ChangeStatus}>Pay $840</button>
+        <button className="btn btn-success px-3" onClick={SendMail}>Pay $840</button>
       </div>
     </div>
     {/* <div className="col-md-4">

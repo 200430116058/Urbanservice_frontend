@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 export const Sidebar = () => {
 
   const path = window.location.pathname
+  const id = localStorage.getItem("user_id");
 
   const serviceProviderLinks =  [
     {
@@ -60,6 +61,11 @@ export const Sidebar = () => {
       link:"/user/profile",
       icon:"person"
     },
+    {
+      name:"Update",
+      link:`/user/update/${id}`,
+      icon:"person"
+    }
     
   ]
 

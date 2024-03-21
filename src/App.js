@@ -13,7 +13,7 @@ import { UpdateService } from './component/serviceprovider/UpdateService';
 import { ProtectedRoutes } from './hooks/ProtectedRoutes';
 import { Error404 } from './component/Error404';
 import { AllServices, BookService } from './component/user/BookService';
-import { MyBookings } from './component/user/MyBookings';
+import MyBookings  from './component/user/MyBookings';
 import { FetchDetails } from './component/user/FetchDetails';
 import { MyServices } from './component/serviceprovider/MyServices';
 import { Servicedetails } from './component/serviceprovider/Servicedetails';
@@ -25,6 +25,8 @@ import { Profile, ServiceProviderProfile } from './component/serviceprovider/Pro
 import { UserProfile } from './component/user/Profile';
 import { BookServiceDetails, DetailBookService } from './component/user/BookServiceDetails';
 import Graph from './component/serviceprovider/ServiceGraph';
+import UserDetail from './component/user/UserDetail';
+import UpdateUser from './component/user/UpdateUser';
 
 function App() {
   const path = window.location.pathname
@@ -38,7 +40,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
-            {/* <Route element={<ProtectedRoutes/>}> */}
+            <Route element={<ProtectedRoutes/>}>
             <Route path='/serviceprovider/registration' element={<ServiceProviderRegister/>}/>
             <Route path='/serviceprovider/dashboard' element={<ServiceProviderDashboard/>}/>
             <Route path='/serviceprovider/profile' element={<ServiceProviderProfile/>}/>
@@ -57,9 +59,13 @@ function App() {
             <Route path='/user/fetchdetails/:id' element={<FetchDetails/>}/>
             <Route path='/user/payment/:id' element={<Payement/>}/>
             <Route path='/service/graph' element={<Graph/>}/>
+            <Route path='/user/deatil/:id' element={<UserDetail />}/>
+            <Route path='/user/update/:id' element={<UpdateUser />}/>
+
+
 
             <Route path='/*' element={<Error404/>}/>
-            {/* </Route> */}
+            </Route>
           </Routes>
         </div>
       </main>
